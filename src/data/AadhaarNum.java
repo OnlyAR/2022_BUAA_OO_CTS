@@ -17,9 +17,7 @@ public class AadhaarNum {
             return false;
         if (Integer.parseInt(bioCode.substring(0, 3)) > 100)
             return false;
-        if (bioCode.charAt(3) > '3')
-            return false;
-        return true;
+        return bioCode.charAt(3) <= '3';
     }
 
     private static boolean isDigit(String aadhaarNum) {
