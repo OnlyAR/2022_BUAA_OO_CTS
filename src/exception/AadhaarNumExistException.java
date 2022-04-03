@@ -1,4 +1,3 @@
 package exception;
 
-public class AadhaarNumExistException extends Exception{
-}
+public class AadhaarNumExistException extends Exception{}

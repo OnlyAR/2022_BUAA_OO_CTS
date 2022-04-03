@@ -1,4 +1,4 @@
-package data;
+package Data.userData;
 
 import exception.*;
 
@@ -17,17 +17,17 @@ public class UserSet {
      *
      * @param args name, sex, Aadhaar number 三个参数
      */
-    public void addUser(String[] args) {
+    public void addUser(String[] args) throws ArgsIllegalException {
         try {
             if (args.length != 3)
                 throw new ArgsIllegalException();
             User user = new User(args[0], args[1], args[2]);
-            if (userSet.get(user.getAadhaarNum()) != null)
+            if (userSet.containsKey(user.getAadhaarNum()))
                 throw new AadhaarNumExistException();
             userSet.put(user.getAadhaarNum(), user);
             System.out.println(user);
         }  catch (ArgsIllegalException e) {
-            System.out.println("Arguments illegal");
+            throw e;
         } catch (NameIllegalException e) {
             System.out.println("Name illegal");
         } catch (SexIllegalException e) {

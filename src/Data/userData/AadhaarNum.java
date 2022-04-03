@@ -1,6 +1,8 @@
-package data;
+package Data.userData;
 
-public class AadhaarNum {
+import Data.Data;
+
+public class AadhaarNum extends Data {
 
     public static boolean legal(String aadhaarNum) {
         if (!isDigit(aadhaarNum))
@@ -18,14 +20,6 @@ public class AadhaarNum {
         if (Integer.parseInt(bioCode.substring(0, 3)) > 100)
             return false;
         return bioCode.charAt(3) <= '3';
-    }
-
-    private static boolean isDigit(String aadhaarNum) {
-        for (int i = 0; i < aadhaarNum.length(); i++) {
-            if (!Character.isDigit(aadhaarNum.charAt(i)))
-                return false;
-        }
-        return true;
     }
 
     private static String getBio(String aadhaarNum) {

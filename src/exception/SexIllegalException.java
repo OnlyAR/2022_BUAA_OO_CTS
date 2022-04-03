@@ -1,4 +1,3 @@
 package exception;
 
-public class SexIllegalException extends Exception{
-}
+public class SexIllegalException extends Exception{}

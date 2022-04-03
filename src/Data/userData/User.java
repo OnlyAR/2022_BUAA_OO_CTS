@@ -1,8 +1,6 @@
-package data;
+package Data.userData;
 
-import exception.AadhaarNumIllegalException;
-import exception.NameIllegalException;
-import exception.SexIllegalException;
+import exception.*;
 
 public class User {
 
@@ -49,14 +47,6 @@ public class User {
 
     boolean sexLegal(String sex) {
         return sex.equals("F") || sex.equals("M") || sex.equals("O");
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public char getSex() {
-        return sex;
     }
 
     public String getAadhaarNum() {

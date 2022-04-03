@@ -1,4 +1,3 @@
 package exception;
 
-public class NameIllegalException extends Exception{
-}
+public class NameIllegalException extends Exception{}
