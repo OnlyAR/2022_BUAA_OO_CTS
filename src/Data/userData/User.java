@@ -1,6 +1,8 @@
 package Data.userData;
 
-import exception.*;
+import exception.AadhaarNumIllegalException;
+import exception.NameIllegalException;
+import exception.SexIllegalException;
 
 public class User {
 
@@ -37,11 +39,9 @@ public class User {
     }
 
     boolean nameLegal(String name) {
-        for (int i = 0; i < name.length(); i++) {
-            if (!(Character.isAlphabetic(name.charAt(i)) ||
-                    name.charAt(i) == '_'))
+        for (int i = 0; i < name.length(); i++)
+            if (!(Character.isAlphabetic(name.charAt(i)) || name.charAt(i) == '_'))
                 return false;
-        }
         return true;
     }
 
@@ -55,8 +55,8 @@ public class User {
 
     @Override
     public String toString() {
-        return "Name:" + name +
-                "\nSex:" + sex +
-                "\nAadhaar:" + aadhaarNum;
+        return "Name:"      + name +
+               "\nSex:"     + sex +
+               "\nAadhaar:" + aadhaarNum;
     }
 }

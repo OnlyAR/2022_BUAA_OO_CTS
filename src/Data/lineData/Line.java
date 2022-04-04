@@ -73,15 +73,9 @@ public class Line {
     public void addTrain(String trainType, String trainId, String[] args) throws TicketNumIllegalException,
             ArgsIllegalException, PriceIllegalException, UnknownException {
         switch (trainType) {
-            case "Normal":
-                trains.add(new Normal(trainId, lineId, args));
-                break;
-            case "Gatimaan":
-                trains.add(new Gatimaan(trainId, lineId, args));
-                break;
-            case "Koya":
-                trains.add(new Koya(trainId, lineId, args));
-                break;
+            case "Normal":   trains.add(new Normal(trainId, lineId, args));   break;
+            case "Gatimaan": trains.add(new Gatimaan(trainId, lineId, args)); break;
+            case "Koya":     trains.add(new Koya(trainId, lineId, args));     break;
         }
     }
 
@@ -102,8 +96,8 @@ public class Line {
                 for (Ticket ticket : train.getTickets())
                     if (ticket.getSeat().equals(seat)) {
                         price = ticket.getPrice() * distance;
-                        System.out.println("[" + trainId + ": " + start + "->" + end + "] seat:" + seat
-                                + " remain:" + ticket.getQuantity() + " distance:" + distance +
+                        System.out.println("[" + trainId + ": " + start + "->" + end + "] seat:" + seat +
+                                " remain:" + ticket.getQuantity() + " distance:" + distance +
                                 " price:" + String.format("%.2f", price));
                         return;
                     }

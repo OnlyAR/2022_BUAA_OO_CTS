@@ -19,11 +19,11 @@ public class Train {
         return lineId;
     }
 
-    public Train(String trainId, String lineId, String[] ticketInfo, String... seatType) throws TicketNumIllegalException,
-            ArgsIllegalException, PriceIllegalException, UnknownException {
+    public Train(String trainId, String lineId, String[] ticketInfo, String... seatType)
+            throws TicketNumIllegalException, ArgsIllegalException, PriceIllegalException, UnknownException {
         try {
             this.trainId = trainId;
-            this.lineId = lineId;
+            this.lineId  = lineId;
             tickets = new ArrayList<>();
             for (int i = 0; i < ticketInfo.length; i += 2)
                 tickets.add(new Ticket(seatType[i / 2], ticketInfo[i], ticketInfo[i + 1]));
@@ -55,14 +55,10 @@ public class Train {
 
     public static int trainTypeSort(char type) {
         switch (type) {
-            case 'K':
-                return 0;
-            case 'G':
-                return 1;
-            case '0':
-                return 2;
-            default:
-                return -1;
+            case 'K': return 0;
+            case 'G': return 1;
+            case '0': return 2;
+            default:  return -1;
         }
     }
 

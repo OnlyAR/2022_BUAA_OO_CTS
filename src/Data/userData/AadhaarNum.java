@@ -10,12 +10,11 @@ public class AadhaarNum extends Data {
         if (aadhaarNum.length() != 12)
             return false;
         String districtCode = getDistrict(aadhaarNum);
-        String casteCode = getCaste(aadhaarNum);
-        String bioCode = getBio(aadhaarNum);
+        String casteCode    = getCaste(aadhaarNum);
+        String bioCode      = getBio(aadhaarNum);
         if (Integer.parseInt(districtCode) < 1 || Integer.parseInt(districtCode) > 1237)
             return false;
-        if (Integer.parseInt(casteCode) < 20 ||
-                Integer.parseInt(casteCode) > 460)
+        if (Integer.parseInt(casteCode) < 20   || Integer.parseInt(casteCode) > 460)
             return false;
         if (Integer.parseInt(bioCode.substring(0, 3)) > 100)
             return false;

@@ -20,11 +20,13 @@ public class LineMap {
         try {
             if (args.length <= 2 || args.length % 2 != 0)
                 throw new ArgsIllegalException();
+
             String lineId = args[0];
             int capacity = Integer.parseInt(args[1]);
             if (capacity <= 0)
                 throw new CapacityIllegalException();
             String[] stationName = new String[args.length / 2 - 1];
+
             int[] stationMiles = new int[args.length / 2 - 1];
             for (int i = 2; i < args.length; i += 2) {
                 stationName[i / 2 - 1] = args[i];
@@ -36,15 +38,10 @@ public class LineMap {
                 throw new LineExistException();
             lines.put(lineId, new Line(lineId, capacity, stationName, stationMiles));
             System.out.println("Add Line success");
-        } catch (StationDuplicateException e) {
-            System.out.println("Station duplicate");
-        } catch (LineExistException e) {
-            System.out.println("Line already exists");
-        } catch (CapacityIllegalException e) {
-            System.out.println("Capacity illegal");
-        } catch (NumberFormatException e) {
-            throw new ArgsIllegalException();
-        }
+        } catch (StationDuplicateException e) { System.out.println("Station duplicate"); }
+          catch (LineExistException e)        { System.out.println("Line already exists"); }
+          catch (CapacityIllegalException e)  { System.out.println("Capacity illegal"); }
+          catch (NumberFormatException e)     { throw new ArgsIllegalException(); }
     }
 
     public void delLine(String[] args) throws ArgsIllegalException {
@@ -56,9 +53,7 @@ public class LineMap {
                 throw new LineNonExistException();
             lines.remove(lineId);
             System.out.println("Del Line success");
-        } catch (LineNonExistException e) {
-            System.out.println("Line does not exist");
-        }
+        } catch (LineNonExistException e) { System.out.println("Line does not exist"); }
     }
 
     public void addStation(String[] args) throws ArgsIllegalException {
@@ -72,13 +67,9 @@ public class LineMap {
             int stationMiles = Integer.parseInt(args[2]);
             lines.get(lineId).addStation(stationName, stationMiles);
             System.out.println("Add Station success");
-        } catch (LineNonExistException e) {
-            System.out.println("Line does not exist");
-        } catch (StationDuplicateException e) {
-            System.out.println("Station duplicate");
-        } catch (NumberFormatException e) {
-            throw new ArgsIllegalException();
-        }
+        } catch (LineNonExistException e)     { System.out.println("Line does not exist"); }
+          catch (StationDuplicateException e) { System.out.println("Station duplicate"); }
+          catch (NumberFormatException e)     { throw new ArgsIllegalException(); }
     }
 
     public void delStation(String[] args) throws ArgsIllegalException {
@@ -91,11 +82,9 @@ public class LineMap {
                 throw new LineNonExistException();
             lines.get(lineId).delStation(stationName);
             System.out.println("Delete Station success");
-        } catch (LineNonExistException e) {
-            System.out.println("Line does not exist");
-        } catch (StationNonExistException e) {
-            System.out.println("Station does not exist");
-        }
+        } catch (LineNonExistException e)    { System.out.println("Line does not exist"); }
+          catch (StationNonExistException e) { System.out.println("Station does not exist"); }
+
     }
 
     public void lineInfo(String[] args) throws ArgsIllegalException {
@@ -121,10 +110,10 @@ public class LineMap {
         List<Line> list = new ArrayList<>(lines.values());
         Comparator<? super Line> comparator = Comparator.comparing(Line::getLineId);
         list.sort(comparator);
-        int num = 1;
+        int idx = 1;
         for (Line l : list) {
-            System.out.println("[" + num + "] " + l);
-            num++;
+            System.out.println("[" + idx + "] " + l);
+            idx++;
         }
     }
 
@@ -135,14 +124,10 @@ public class LineMap {
             if (!Character.isDigit(trainId.charAt(i)))
                 return null;
         switch (trainId.charAt(0)) {
-            case '0':
-                return "Normal";
-            case 'G':
-                return "Gatimaan";
-            case 'K':
-                return "Koya";
-            default:
-                return null;
+            case '0': return "Normal";
+            case 'G': return "Gatimaan";
+            case 'K': return "Koya";
+            default:  return null;
         }
     }
 
@@ -153,9 +138,9 @@ public class LineMap {
             if (trainType == null)
                 throw new TrainSerialIllegalException();
 
-            if ((trainType.equals("Normal") && args.length != 8) ||
-                    (trainType.equals("Gatimaan") && args.length != 8) ||
-                    (trainType.equals("Koya") && args.length != 6))
+            if ((trainType.equals("Normal")   && args.length != 8) ||
+                (trainType.equals("Gatimaan") && args.length != 8) ||
+                (trainType.equals("Koya")     && args.length != 6))
                 throw new ArgsIllegalException();
 
             for (String k : lines.keySet())
@@ -167,18 +152,11 @@ public class LineMap {
                 throw new LineIllegalException();
             lines.get(lineId).addTrain(trainType, trainId, delFirst(delFirst(args)));
             System.out.println("Add Train Success");
-        } catch (TrainSerialIllegalException e) {
-            System.out.println("Train serial illegal");
-        } catch (TrainSerialDuplicateException e) {
-            System.out.println("Train serial duplicate");
-        } catch (LineIllegalException e) {
-            System.out.println("Line illegal");
-        } catch (TicketNumIllegalException e) {
-            System.out.println("Ticket num illegal");
-        } catch (PriceIllegalException e) {
-            System.out.println("Price illegal");
-        }
-
+        } catch (TrainSerialIllegalException e)   { System.out.println("Train serial illegal"); }
+          catch (TrainSerialDuplicateException e) { System.out.println("Train serial duplicate"); }
+          catch (LineIllegalException e)          { System.out.println("Line illegal"); }
+          catch (TicketNumIllegalException e)     { System.out.println("Ticket num illegal"); }
+          catch (PriceIllegalException e)         { System.out.println("Price illegal"); }
     }
 
     public void delTrain(String[] args) throws ArgsIllegalException {
@@ -222,16 +200,10 @@ public class LineMap {
             }
             if (!containsTrain)
                 throw new TrainNonExistException();
-        } catch (TrainSerialIllegalException e) {
-            System.out.println("Train serial illegal");
-        } catch (TrainNonExistException e) {
-            System.out.println("Train serial does not exist");
-        } catch (StationNonExistException e) {
-            System.out.println("Station does not exist");
-        } catch (SeatUnmachedException e) {
-            System.out.println("Seat does not match");
-        }
-
+        } catch (TrainSerialIllegalException e) { System.out.println("Train serial illegal"); }
+          catch (TrainNonExistException e)      { System.out.println("Train serial does not exist"); }
+          catch (StationNonExistException e)    { System.out.println("Station does not exist"); }
+          catch (SeatUnmachedException e)       { System.out.println("Seat does not match"); }
     }
 
     public void listTrain(String[] args) throws ArgsIllegalException {
@@ -255,14 +227,13 @@ public class LineMap {
                 }
             }
             printTrain(trains);
-        } catch (LineNonExistException e) {
-            System.out.println("Line does not exist");
-        }
+        } catch (LineNonExistException e) { System.out.println("Line does not exist"); }
     }
 
     private void printTrain(ArrayList<Train> trains) {
         if (trains.isEmpty())
             System.out.println("No Trains");
+
         Comparator<? super Train> comparator = (Comparator<Train>) (o1, o2) -> {
             int type1 = Train.trainTypeSort(o1.getTrainId().charAt(0));
             int type2 = Train.trainTypeSort(o2.getTrainId().charAt(0));
@@ -273,10 +244,11 @@ public class LineMap {
             return code1.compareTo(code2);
         };
         trains.sort(comparator);
+
         int idx = 1;
         for (Train train : trains) {
             System.out.println("[" + idx + "] " + train.getTrainId() + ": "
-                    + train.getLineId() + train.showTickets());
+                               + train.getLineId() + train.showTickets());
             idx++;
         }
     }

@@ -2,6 +2,12 @@ package Data;
 
 public class Data {
 
+    /**
+     * 判断一个字符串是否是整数(允许前导零)
+     *
+     * @param num 待判断的字符串
+     * @return 判断结果
+     */
     public static boolean isDigit(String num) {
         for (int i = 0; i < num.length(); i++) {
             if (!Character.isDigit(num.charAt(i)))
