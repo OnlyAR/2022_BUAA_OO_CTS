@@ -22,6 +22,8 @@ public class LineMap {
                 throw new ArgsIllegalException();
 
             String lineId = args[0];
+            if (lines.containsKey(lineId))
+                throw new LineExistException();
             int capacity = Integer.parseInt(args[1]);
             if (capacity <= 0)
                 throw new CapacityIllegalException();
@@ -34,8 +36,6 @@ public class LineMap {
                 if (stationMiles[i / 2 - 1] < 0)
                     throw new ArgsIllegalException();
             }
-            if (lines.containsKey(lineId))
-                throw new LineExistException();
             lines.put(lineId, new Line(lineId, capacity, stationName, stationMiles));
             System.out.println("Add Line success");
         } catch (StationDuplicateException e) { System.out.println("Station duplicate"); }
