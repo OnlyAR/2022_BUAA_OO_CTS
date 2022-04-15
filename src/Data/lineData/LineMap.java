@@ -20,7 +20,6 @@ public class LineMap {
         try {
             if (args.length <= 2 || args.length % 2 != 0)
                 throw new ArgsIllegalException();
-
             String lineId = args[0];
             if (lines.containsKey(lineId))
                 throw new LineExistException();
@@ -143,9 +142,8 @@ public class LineMap {
                 (trainType.equals("Koya")     && args.length != 6))
                 throw new ArgsIllegalException();
 
-            for (String k : lines.keySet())
-                if (lines.get(k).containsTrain(trainId))
-                    throw new TrainSerialDuplicateException();
+            if (containsTrain(trainId))
+                throw new TrainSerialDuplicateException();
 
             String lineId = args[1];
             if (!lines.containsKey(lineId) || lines.get(lineId).full())
@@ -157,6 +155,13 @@ public class LineMap {
           catch (LineIllegalException e)          { System.out.println("Line illegal"); }
           catch (TicketNumIllegalException e)     { System.out.println("Ticket num illegal"); }
           catch (PriceIllegalException e)         { System.out.println("Price illegal"); }
+    }
+
+    public boolean containsTrain(String trainId) {
+        for (String k : lines.keySet())
+            if (lines.get(k).containsTrain(trainId))
+                return true;
+        return false;
     }
 
     public void delTrain(String[] args) throws ArgsIllegalException {
@@ -251,5 +256,15 @@ public class LineMap {
                                + train.getLineId() + train.showTickets());
             idx++;
         }
+    }
+
+    public Line getLine(String trainID) {
+        Line line;
+        for (String k: lines.keySet()) {
+            line = lines.get(k);
+            if (line.containsTrain(trainID))
+                return line;
+        }
+        return null;
     }
 }

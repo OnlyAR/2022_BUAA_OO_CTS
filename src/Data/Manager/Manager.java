@@ -9,7 +9,8 @@ public class Manager {
     public Manager() {
         cmdList = new ArrayList<>();
         Collections.addAll(cmdList, "addUser", "TunakTunakTun",
-                "NutKanutKanut", "listTrain", "lineInfo", "listLine");
+                "NutKanutKanut", "listTrain", "lineInfo", "listLine", "login",
+                "logout", "buyTicket", "listOrder");
     }
 
     public void addCmd(String... cmd) {

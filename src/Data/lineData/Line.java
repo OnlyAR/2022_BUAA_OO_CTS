@@ -115,4 +115,26 @@ public class Line {
         return trains;
     }
 
+    public Train getTrain(String trainId) {
+        for (Train train: trains)
+            if (train.getTrainId().equals(trainId))
+                return train;
+        return null;
+    }
+
+    public boolean containsStation (String stationName) {
+        for (Station station: stations) {
+            if (station.getName().equals(stationName))
+                return true;
+        }
+        return false;
+    }
+
+    public Station getStation(String stationName) {
+        for (Station station: stations)
+            if (station.getName().equals(stationName))
+                return station;
+        return null;
+    }
+
 }

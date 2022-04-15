@@ -42,6 +42,13 @@ public class Train {
         return tickets;
     }
 
+    public Ticket getTicket(String seat) {
+        for (Ticket ticket: tickets)
+            if (ticket.getSeat().equals(seat))
+                return ticket;
+        return null;
+    }
+
     public boolean containSeat(String seat) {
         return seatType.contains(seat);
     }

@@ -49,6 +49,12 @@ public class Ticket {
         return quantity;
     }
 
+    public void sell(int num) throws TicketUnenoughException {
+        if (num > quantity)
+            throw new TicketUnenoughException();
+        quantity -= num;
+    }
+
     @Override
     public String toString() {
         return " [" + seat + "]" + String.format("%.2f", price) + ":" + quantity;

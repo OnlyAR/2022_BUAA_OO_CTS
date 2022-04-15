@@ -35,4 +35,21 @@ public class UserMap {
           catch (AadhaarNumExistException e)   { System.out.println("Aadhaar number exist"); }
     }
 
+    public User login(String[] args) {
+        try {
+            String aadhaarNum = args[0];
+            String userName = args[1];
+            if (!users.containsKey(aadhaarNum))
+                throw new UserNonExistException();
+            User user = users.get(aadhaarNum);
+            if (user.getName().equals(userName)) {
+                System.out.println("Login success");
+                return user;
+            } else
+                throw new WrongNameException();
+        } catch (UserNonExistException e) { System.out.println("User does not exist"); }
+          catch (WrongNameException e)    { System.out.println("Wrong name"); }
+        return null;
+    }
+
 }
