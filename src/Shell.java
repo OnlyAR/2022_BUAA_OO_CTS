@@ -1,4 +1,4 @@
-import Data.Manager.*;
+import Data.manager.*;
 import Data.lineData.LineMap;
 import Data.userData.User;
 import Data.userData.UserMap;
@@ -122,6 +122,39 @@ public class Shell {
                             throw new PleaseLoginException();
                         user.listOrder();
                         break;
+                    case "rechargeBalance":
+                        if (delFirst(args).length != 1)
+                            throw new ArgsIllegalException();
+                        if (user == null)
+                            throw new PleaseLoginException();
+                        user.rechargeBalance(delFirst(args));
+                        break;
+                    case "checkBalance":
+                        if (delFirst(args).length != 0)
+                            throw new ArgsIllegalException();
+                        if (user == null)
+                            throw new PleaseLoginException();
+                        user.checkBalance();
+                        break;
+                    case "importCert":
+                        if (delFirst(args).length != 1)
+                            throw new ArgsIllegalException();
+                        userMap.importCert(delFirst(args));
+                        break;
+                    case "cancelOrder":
+                        if (delFirst(args).length != 5)
+                            throw new ArgsIllegalException();
+                        if (user == null)
+                            throw new PleaseLoginException();
+                        user.cancelOrder(delFirst(args));
+                        break;
+                    case "payOrder":
+                        if (delFirst(args).length != 0)
+                            throw new ArgsIllegalException();
+                        if (user == null)
+                            throw new PleaseLoginException();
+                        user.payOrder();
+                        break;
                     default:
                         throw new CmdNonExistException();
                 }
@@ -135,8 +168,8 @@ public class Shell {
                 System.out.println("No user has logged in");
             } catch (PleaseLoginException e) {
                 System.out.println("Please login first");
-            } catch (UnknownException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                System.out.println("Exception");
             }
         }
         in.close();

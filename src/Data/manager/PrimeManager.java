@@ -1,4 +1,4 @@
-package Data.Manager;
+package Data.manager;
 
 public class PrimeManager extends Manager{
     public PrimeManager() {

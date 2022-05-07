@@ -1,4 +1,4 @@
-package Data.Manager;
+package Data.manager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +10,8 @@ public class Manager {
         cmdList = new ArrayList<>();
         Collections.addAll(cmdList, "addUser", "TunakTunakTun",
                 "NutKanutKanut", "listTrain", "lineInfo", "listLine", "login",
-                "logout", "buyTicket", "listOrder");
+                "logout", "buyTicket", "listOrder", "rechargeBalance", "checkBalance",
+                "cancelOrder", "payOrder");
     }
 
     public void addCmd(String... cmd) {

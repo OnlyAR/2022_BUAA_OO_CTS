@@ -59,4 +59,8 @@ public class Ticket {
     public String toString() {
         return " [" + seat + "]" + String.format("%.2f", price) + ":" + quantity;
     }
+
+    public void addQuantity(int num) {
+        quantity += num;
+    }
 }
